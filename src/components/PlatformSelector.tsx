@@ -2,6 +2,7 @@ import { Button, Menu, MenuButton, MenuItem, MenuList, Spinner } from '@chakra-u
 import React from 'react'
 import { BsChevronDown } from 'react-icons/bs'
 import usePlatforms, { Platform } from '../hooks/usePlatforms'
+import usePlatform from '../hooks/usePlatform'
 
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
 
 const PlatformSelector = ({onSelectPlatform, selectedPlatformId} : Props) => {
     const {data: platforms, error, isLoading} = usePlatforms();
-    const platform = platforms?.results.find(p => p.id === selectedPlatformId)
+    const platform = usePlatform(selectedPlatformId);
     if(error) return null;
     if(isLoading) return <Spinner />
 
