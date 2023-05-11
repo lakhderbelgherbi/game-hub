@@ -12,10 +12,10 @@ export interface Game {
   rating_top: number;
   rating: number
 }
-const apiClient = new ApiClient<Game>('/games');
+const apiClient = new ApiClient<Game>("/games");
 
 const useGames =  (gameQuery: GameQuery) => useQuery<FetchResponse<Game>, Error>({
-  queryKey: ['games'],
+  queryKey: ["games", gameQuery],
   queryFn: () => apiClient.getAll({
     params: {
       genres: gameQuery.genre?.id,
@@ -23,7 +23,8 @@ const useGames =  (gameQuery: GameQuery) => useQuery<FetchResponse<Game>, Error>
       ordering: gameQuery.sortOrder,
       search: gameQuery.searchText
     },
-  })
+  }),
+  staleTime: 24 * 60 * 60 * 1000,
 })
 
 export default useGames;
