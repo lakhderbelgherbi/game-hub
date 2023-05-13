@@ -1,7 +1,7 @@
 # game-hub
 This repository contains the completed code for the GameHub project
 
-Steps
+# Steps
 To get started, follow these steps:
 
 Clone this repository to your local machine.
